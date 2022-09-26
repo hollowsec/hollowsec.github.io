@@ -1,0 +1,9 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+  <channel>
+    <title>HollowSec | Notes</title>
+    <link>http://hollowsec.github.io/</link>
+    <description>HollowSec | Notes</description>
+    <generator>Hugo -- gohugo.io</generator><language>en</language>
+      <atom:link href="http://hollowsec.github.io/index.xml" rel="self" type="application/rss+xml" />
+    </channel>
+</rss>
