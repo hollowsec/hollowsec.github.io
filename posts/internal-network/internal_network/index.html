@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html itemscope itemtype="http://schema.org/WebPage" lang="en">
+  <head>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+    <meta name="robots" content="noodp" />
+    <title>Malware Analysis Lab: Internal Network - HollowSec | Notes</title><meta name="author" content="">
+<meta name="author-link" content="">
+<meta name="description" content="The Internal Network provides an additional level of security that removes the reliance on a host firewell to protect our physical host.
+I will use VirtualBox for the configuration of Windows 10 and REMnux (Linux Toolkit for Malware Analysis) for my Internal Network." /><meta name="keywords" content='network,, internal, network,, malware,, lab' /><meta itemprop="name" content="Malware Analysis Lab: Internal Network">
+<meta itemprop="description" content="The Internal Network provides an additional level of security that removes the reliance on a host firewell to protect our physical host.
+I will use VirtualBox for the configuration of Windows 10 and REMnux (Linux Toolkit for Malware Analysis) for my Internal Network."><meta itemprop="datePublished" content="2022-09-27T04:43:17-03:00" />
+<meta itemprop="dateModified" content="2022-09-27T04:43:17-03:00" />
+<meta itemprop="wordCount" content="954">
+<meta itemprop="keywords" content="network,malware,lab," /><meta property="og:title" content="Malware Analysis Lab: Internal Network" />
+<meta property="og:description" content="The Internal Network provides an additional level of security that removes the reliance on a host firewell to protect our physical host.
+I will use VirtualBox for the configuration of Windows 10 and REMnux (Linux Toolkit for Malware Analysis) for my Internal Network." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://hollowsec.github.io/posts/internal-network/internal_network/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-09-27T04:43:17-03:00" />
+<meta property="article:modified_time" content="2022-09-27T04:43:17-03:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Malware Analysis Lab: Internal Network"/>
+<meta name="twitter:description" content="The Internal Network provides an additional level of security that removes the reliance on a host firewell to protect our physical host.
+I will use VirtualBox for the configuration of Windows 10 and REMnux (Linux Toolkit for Malware Analysis) for my Internal Network."/>
+<meta name="application-name" content="HollowSec">
+<meta name="apple-mobile-web-app-title" content="HollowSec"><meta name="theme-color" data-light="#f8f8f8" data-dark="#252627" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" href="http://hollowsec.github.io/posts/internal-network/internal_network/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "headline": "Malware Analysis Lab: Internal Network",
+    "inLanguage": "en",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "http:\/\/hollowsec.github.io\/posts\/internal-network\/internal_network\/"
+    },"genre": "posts","keywords": "network, malware, lab","wordcount":  954 ,
+    "url": "http:\/\/hollowsec.github.io\/posts\/internal-network\/internal_network\/","datePublished": "2022-09-27T04:43:17-03:00","dateModified": "2022-09-27T04:43:17-03:00","publisher": {
+      "@type": "Organization",
+      "name": ""},"author": {
+        "@type": "Person",
+        "name": "HollowSec"
+      },"description": ""
+  }
+  </script></head>
+  <body data-header-desktop="sticky" data-header-mobile="auto"><script>(window.localStorage?.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('dark' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'dark' === 'dark')) && document.body.setAttribute('data-theme', 'dark');</script><div class="wrapper"><header class="desktop animate__faster" id="header-desktop">
+  <div class="header-wrapper">
+    <div class="header-title">
+      <a href="/" title="HollowSec | Notes"><img
+    class="lazyload logo"
+    src="/svg/loading.min.svg"
+    data-src="/hollowlogo.min.svg"
+    data-srcset="/hollowlogo.min.svg, /hollowlogo.min.svg 1.5x, /hollowlogo.min.svg 2x"
+    data-sizes="auto"
+    alt="HollowSec | Notes"
+    title="HollowSec | Notes"/><span class="header-title-text">HollowSec | Notes</span></a><span class="header-subtitle"></span></div>
+    <nav>
+      <ul class="menu"><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/posts/"
+                
+                
+              >Posts</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/categories/"
+                
+                
+              >Categories</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/tags/"
+                
+                
+              >Tags</a></li><li class="menu-item delimiter"></li><li class="menu-item search" id="search-desktop">
+            <input type="text" placeholder="Search titles or contents ..." id="search-input-desktop">
+            <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+              <i class="fa-solid fa-search fa-fw" aria-hidden="true"></i>
+            </a>
+            <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+              <i class="fa-solid fa-times-circle fa-fw" aria-hidden="true"></i>
+            </a>
+            <span class="search-button search-loading" id="search-loading-desktop">
+              <i class="fa-solid fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+            </span>
+          </li><li class="menu-item theme-switch" title="Switch Theme">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header><header class="mobile animate__faster" id="header-mobile">
+  <div class="header-container">
+    <div class="header-wrapper">
+      <div class="header-title">
+        <a href="/" title="HollowSec | Notes"><img
+    class="lazyload logo"
+    src="/svg/loading.min.svg"
+    data-src="/hollowlogo.min.svg"
+    data-srcset="/hollowlogo.min.svg, /hollowlogo.min.svg 1.5x, /hollowlogo.min.svg 2x"
+    data-sizes="auto"
+    alt="/hollowlogo.min.svg"
+    title="/hollowlogo.min.svg"/><span class="header-title-text">HollowSec | Notes</span></a><span class="header-subtitle"></span></div>
+      <div class="menu-toggle" id="menu-toggle-mobile">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+    <nav>
+      <ul class="menu" id="menu-mobile"><li class="search-wrapper">
+            <div class="search mobile" id="search-mobile">
+              <input type="text" placeholder="Search titles or contents ..." id="search-input-mobile">
+              <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                <i class="fa-solid fa-search fa-fw" aria-hidden="true"></i>
+              </a>
+              <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                <i class="fa-solid fa-times-circle fa-fw" aria-hidden="true"></i>
+              </a>
+              <span class="search-button search-loading" id="search-loading-mobile">
+                <i class="fa-solid fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+              </span>
+            </div>
+            <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+              Cancel
+            </a>
+          </li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/posts/"
+                  
+                  
+                >Posts</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/categories/"
+                  
+                  
+                >Categories</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/tags/"
+                  
+                  
+                >Tags</a></li><li class="menu-item theme-switch" title="Switch Theme">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li></ul>
+    </nav>
+  </div>
+</header><div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+  </div>
+  <div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+  </div><main class="container" data-page-style="normal"><aside class="toc" id="toc-auto"><h2 class="toc-title">Contents&nbsp;<i class="toc-icon fa-solid fa-angle-down fa-fw" aria-hidden="true"></i></h2>
+      <div class="toc-content" id="toc-content-auto"></div></aside>
+
+  <aside class="aside-custom">
+    
+</aside>
+
+  <article class="page single">
+    <div class="header"><h1 class="single-title animate__animated animate__flipInX">
+        <span title="Repost" class="icon-repost"><i class="fa-solid fa-share fa-fw" aria-hidden="true"></i></span><span>Malware Analysis Lab: Internal Network</span>
+      </h1><p class="single-subtitle animate__animated animate__fadeIn">Set up a truly isolated lab network for malware analysis</p></div><div class="post-meta">
+      <div class="post-meta-line"><span class="post-author"><a href="https://twitter.com/hollowsec_" title="Author"target="_blank" rel="external nofollow noopener noreferrer author" class="author"><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
+    HollowSec</a></span>
+          <span class="post-category">included in <a href="/categories/lab/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> lab</a></span></div>
+      <div class="post-meta-line"><span title=2022-09-27&#32;04:43:17><i class="fa-regular fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2022-09-27">2022-09-27</time></span>&nbsp;<span><i class="fa-solid fa-pencil-alt fa-fw" aria-hidden="true"></i> 954 words</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw" aria-hidden="true"></i> 5 minutes</span>&nbsp;</div>
+    </div><div class="details toc" id="toc-static" data-kept="false">
+        <div class="details-summary toc-title">
+          <span>Contents</span>
+          <span><i class="details-icon fa-solid fa-angle-right" aria-hidden="true"></i></span>
+        </div>
+        <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#remnux-configuration">REMnux Configuration</a>
+      <ul>
+        <li><a href="#static-ip-configuration">Static IP Configuration</a></li>
+        <li><a href="#inetsim-configuration">iNetSim Configuration</a></li>
+      </ul>
+    </li>
+    <li><a href="#windows-configuration">Windows Configuration</a></li>
+  </ul>
+</nav></div>
+      </div><div
+      class="content"
+      id="content"
+      
+      
+    ><p>The Internal Network provides an additional level of security that removes the reliance on a host firewell to protect our physical host.</p>
+<p>I will use VirtualBox for the configuration of Windows 10 and REMnux (Linux Toolkit for Malware Analysis) for my Internal Network.</p>
+<h2 id="remnux-configuration">REMnux Configuration</h2>
+<p>Perform the following steps to create an Internal Network:</p>
+<ul>
+<li>In VirtualBox, right-click on the REMnux VM and go to settings</li>
+<li>Network</li>
+<li>In the Attached To dropdown menu, select Internal Network</li>
+<li>Add a name to the new Internal Network</li>
+<li>Click the drop down arrow next to Advanced  and change the Promiscuous Mode to &ldquo;Allow VMs&rdquo;</li>
+<li>Click Ok and Power on the REMnux</li>
+</ul>
+<p><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="/img/remnux-network.png"
+    data-srcset="/img/remnux-network.png, /img/remnux-network.png 1.5x, /img/remnux-network.png 2x"
+    data-sizes="auto"
+    alt="remnux-network.png"
+    title="remnux-network.png"/></p>
+<h3 id="static-ip-configuration">Static IP Configuration</h3>
+<p>There is no <code>DHCP</code> server in the Internal Network, we have to manually define a static IP adress for the REMnux host. For this we gonna use <!-- raw HTML omitted -->netplan<!-- raw HTML omitted --> utility. <!-- raw HTML omitted -->Netplan<!-- raw HTML omitted --> utility uses a YAML config file to control the host&rsquo;s adapter settings.</p>
+<p>Open the netplan config file in vim with sudo:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ sudo vim /etc/netplan/01-netcfg.yaml
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="c"># This file describes the network interfaces available on your system</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c"># For more information, see netplan(5).</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">network</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="m">2</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">renderer</span><span class="p">:</span><span class="w"> </span><span class="l">networkd</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">ethernets</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">enp0s3</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">dhcp4</span><span class="p">:</span><span class="w"> </span><span class="kc">yes</span><span class="w">
+</span></span></span></code></pre></div><p>We want to remove the DHCP and assign all network information statically.</p>
+<p>Change <code>dhcp4</code> to <code>no</code>, add the <code>addresses</code> and <code>gateway4</code> objects.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="c"># This file describes the network interfaces available on your system</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c"># For more information, see netplan(5).</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">network</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="m">2</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">renderer</span><span class="p">:</span><span class="w"> </span><span class="l">networkd</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">ethernets</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">enp0s3</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">     </span><span class="nt">dhcp4</span><span class="p">:</span><span class="w"> </span><span class="kc">no</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">     </span><span class="nt">addresses</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="m">10.10.0.3</span><span class="l">/24]</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">     </span><span class="nt">gateway4</span><span class="p">:</span><span class="w"> </span><span class="m">10.0.0.1</span><span class="w">
+</span></span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ sudo netplan apply
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ ip -br -c a
+</span></span><span class="line"><span class="cl">lo               UNKNOWN        127.0.0.1/8 ::1/128 
+</span></span><span class="line"><span class="cl">enp0s3           UP             10.0.0.3/24 fe80::a00:27ff:fe0f:f449/64 
+</span></span></code></pre></div><h3 id="inetsim-configuration">iNetSim Configuration</h3>
+<p>iNetSim is going to be our Internet Simulator.</p>
+<p>(iNetSim always gonna give <code>HTTP 200 OK</code> and give fake binaries for request, is awesome to capture network indicators of malwares.)</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ sudo vim /etc/inetsim/inetsim.conf 
+</span></span></code></pre></div><p>We want to enable <code>start_service dns</code> and change our <code>dns_default_ip</code></p>
+<pre tabindex="0"><code># echo_udp, discard_tcp, discard_udp, quotd_tcp,
+# quotd_udp, chargen_tcp, chargen_udp, finger,
+# ident, syslog, dummy_tcp, dummy_udp, smtps, pop3s,
+# ftps, irc, https
+#
+start_service dns
+start_service http
+start_service https
+start_service smtp
+start_service smtps
+start_service pop3
+start_service pop3s
+start_service ftp
+start_service ftps
+#start_service tftp
+#start_service irc
+#start_service ntp
+</code></pre><pre tabindex="0"><code>#########################################
+# dns_default_ip
+#
+# Default IP address to return with DNS replies
+#
+# Syntax: dns_default_ip &lt;IP address&gt;
+#
+# Default: 127.0.0.1
+#
+dns_default_ip          10.0.0.3
+</code></pre><h2 id="windows-configuration">Windows Configuration</h2>
+<p>Windows is more straightforward than REMnux for this setup.</p>
+<ul>
+<li>In VirtualBox, right-click on the Windows VM and select settings</li>
+<li>Network</li>
+<li>Associate Windows to the same Internal Network that we made earlier</li>
+<li>Click the drop down arrow next to Advanced  and change the Promiscuous Mode to &ldquo;Allow VMs&rdquo;</li>
+<li>Click Ok and Power on the Windows</li>
+</ul>
+<p><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="/img/windows-network.png"
+    data-srcset="/img/windows-network.png, /img/windows-network.png 1.5x, /img/windows-network.png 2x"
+    data-sizes="auto"
+    alt="windows-network.png"
+    title="windows-network.png"/>
+On Windows search for <!-- raw HTML omitted -->View Network Connections <!-- raw HTML omitted -->, to get to the Network Connection Adapter Settings.</p>
+<p>Right-click on the <!-- raw HTML omitted -->Ethernet Adapter<!-- raw HTML omitted --> and select <!-- raw HTML omitted -->Properties → IPv4 Properties<!-- raw HTML omitted -->.</p>
+<p>We will now statically define our IPv4 settings:</p>
+<ul>
+<li>The IPv4 address it doesn’t matter what it’s set to as long as it’s a valid address in the <code>10.0.0.0/24</code> network.</li>
+<li>The Subnet Mask to configure a <code>/24</code> network.</li>
+<li>Our Default Gateway to be the REMnux host so we can make use of INetSim.</li>
+<li>Our DNS server to be the REMnux host so we can make use of INetSim.</li>
+</ul>
+<p><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="/img/windows-ip.png"
+    data-srcset="/img/windows-ip.png, /img/windows-ip.png 1.5x, /img/windows-ip.png 2x"
+    data-sizes="auto"
+    alt="windows-ip.png"
+    title="windows-ip.png"/></p>
+<pre tabindex="0"><code>c:\Users\hollow\Desktop&gt;ipconfig /all
+
+Windows IP Configuration
+
+   Host Name . . . . . . . . . . . . : DESKTOP-0RVV361
+   Primary Dns Suffix  . . . . . . . :
+   Node Type . . . . . . . . . . . . : Hybrid
+   IP Routing Enabled. . . . . . . . : No
+   WINS Proxy Enabled. . . . . . . . : No
+
+Ethernet adapter Ethernet:
+
+   Connection-specific DNS Suffix  . :
+   Description . . . . . . . . . . . : Intel(R) PRO/1000 MT Desktop Adapter
+   Physical Address. . . . . . . . . : 08-00-27-CA-87-0F
+   DHCP Enabled. . . . . . . . . . . : No
+   Autoconfiguration Enabled . . . . : Yes
+   Link-local IPv6 Address . . . . . : fe80::8cab:59ec:da25:aebd%4(Preferred)
+   IPv4 Address. . . . . . . . . . . : 10.0.0.22(Preferred)
+   Subnet Mask . . . . . . . . . . . : 255.255.255.0
+   Default Gateway . . . . . . . . . : 10.0.0.3
+   DHCPv6 IAID . . . . . . . . . . . : 101187623
+   DHCPv6 Client DUID. . . . . . . . : 00-01-00-01-2A-77-59-DC-08-00-27-CA-87-0F
+   DNS Servers . . . . . . . . . . . : 10.0.0.3
+   NetBIOS over Tcpip. . . . . . . . : Enabled
+
+Ethernet adapter Npcap Loopback Adapter:
+
+   Connection-specific DNS Suffix  . :
+   Description . . . . . . . . . . . : Npcap Loopback Adapter
+   Physical Address. . . . . . . . . : 02-00-4C-4F-4F-50
+   DHCP Enabled. . . . . . . . . . . : Yes
+   Autoconfiguration Enabled . . . . : Yes
+   Link-local IPv6 Address . . . . . : fe80::31fb:9a74:650a:82df%5(Preferred)
+   Autoconfiguration IPv4 Address. . : 169.254.130.223(Preferred)
+   Subnet Mask . . . . . . . . . . . : 255.255.0.0
+   Default Gateway . . . . . . . . . :
+   DHCPv6 IAID . . . . . . . . . . . : 184680524
+   DHCPv6 Client DUID. . . . . . . . : 00-01-00-01-2A-77-59-DC-08-00-27-CA-87-0F
+   DNS Servers . . . . . . . . . . . : fec0:0:0:ffff::1%1
+                                       fec0:0:0:ffff::2%1
+                                       fec0:0:0:ffff::3%1
+   NetBIOS over Tcpip. . . . . . . . : Enabled
+</code></pre><h1 id="done-internal-network-is-configured">Done. Internal Network is configured</h1>
+<p>Now we are ready to detonate some samples of malware on our Windows machine and use our internet simulator(REMnux) to capture <code>Network Indicators.</code></p>
+<h1 id="thats-all-folks">That&rsquo;s All Folks</h1></div><div class="post-footer" id="post-footer">
+  <div class="post-info">
+    <div class="post-info-line">
+      <div class="post-info-mod">
+        <span title=2022-09-27&#32;04:43:17>Updated on 2022-09-27&nbsp;</span>
+      </div></div>
+    <div class="post-info-line">
+      <div class="post-info-md"></div>
+      <div class="post-info-share">
+        <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="http://hollowsec.github.io/posts/internal-network/internal_network/" data-title="Malware Analysis Lab: Internal Network" data-via="hollowsec_" data-hashtags="network,malware,lab"><i class="fa-brands fa-twitter fa-fw" aria-hidden="true"></i></a>
+  <a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="http://hollowsec.github.io/posts/internal-network/internal_network/" data-hashtag="network"><i class="fa-brands fa-facebook-square fa-fw" aria-hidden="true"></i></a>
+  <a href="javascript:void(0);" title="Share on Linkedin" data-sharer="linkedin" data-url="http://hollowsec.github.io/posts/internal-network/internal_network/"><i class="fa-brands fa-linkedin fa-fw" aria-hidden="true"></i></a>
+  </span>
+      </div>
+    </div>
+  </div>
+
+  <div class="post-info-more">
+    <section class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/network/">network</a>,&nbsp;<a href="/tags/malware/">malware</a>,&nbsp;<a href="/tags/lab/">lab</a></section>
+    <section>
+      <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+    </section>
+  </div>
+
+  <div class="post-nav"></div>
+</div>
+</article></main><footer class="footer">
+    <div class="footer-container"><div class="footer-line powered">
+	
+        </div><div class="footer-line statistics"></div></div>
+  </footer></div><div class="widgets"><div class="fixed-buttons animate__faster d-none"><div class="fixed-button back-to-top" role="button" aria-label="Back to Top"><i class="fa-solid fa-arrow-up fa-fw" aria-hidden="true"></i><span class="variant-numeric d-none">0%</span>
+        </div></div><div id="mask"></div><div class="reading-progress-bar" style="left: 0;top: 0;"></div><noscript>
+    <div class="noscript-warning">Theme FixIt works best with JavaScript enabled.</div>
+  </noscript>
+</div><link rel="stylesheet" href="/lib/cookieconsent/cookieconsent.min.css"><script src="/lib/autocomplete/autocomplete.min.js" defer></script><script src="/lib/lunr/lunr.min.js" defer></script><script src="/lib/lazysizes/lazysizes.min.js" async defer></script><script src="/lib/sharer/sharer.min.js" async defer></script><script src="/lib/cookieconsent/cookieconsent.min.js" defer></script><script>window.config={"code":{"copyTitle":"Copy to clipboard","editLockTitle":"Lock editable code block","editUnLockTitle":"Unlock editable code block","editable":true,"maxShownLines":10},"comment":{"enable":false},"cookieconsent":{"content":{"dismiss":"Got it!","link":"Learn more","message":"This website uses Cookies to improve your experience."},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"search":{"highlightTag":"em","maxResultLength":10,"noResultsFound":"No results found","snippetLength":30}};</script><script src="/js/theme.min.js" defer></script></body>
+</html>

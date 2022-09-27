@@ -1,11 +1,9 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
   <channel>
-    <title>HollowSec | Notes</title>
-    <link>http://hollowsec.github.io/</link>
-    <description>HollowSec | Notes</description>
-    <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Tue, 27 Sep 2022 04:43:17 -0300</lastBuildDate>
-      <atom:link href="http://hollowsec.github.io/index.xml" rel="self" type="application/rss+xml" />
-    <item>
+    <title>lab - Category - HollowSec | Notes</title>
+    <link>http://hollowsec.github.io/categories/lab/</link>
+    <description>lab - Category - HollowSec | Notes</description>
+    <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Tue, 27 Sep 2022 04:43:17 -0300</lastBuildDate><atom:link href="http://hollowsec.github.io/categories/lab/" rel="self" type="application/rss+xml" /><item>
   <title>Malware Analysis Lab: Internal Network</title>
   <link>http://hollowsec.github.io/posts/internal-network/internal_network/</link>
   <pubDate>Tue, 27 Sep 2022 04:43:17 -0300</pubDate>
