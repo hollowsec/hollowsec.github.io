@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html itemscope itemtype="http://schema.org/WebPage" lang="en">
+  <head>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+    <meta name="robots" content="noodp" />
+    <title>Malicious Document Analysis - HollowSec | Notes</title><meta name="author" content="">
+<meta name="author-link" content="">
+<meta name="description" content="We are going to be using VirusTotal and command line tools like Olevba
+sudo -H pip install -U oletools MD5 Hash of the file we gonna analyze
+a3b613d128aace09241504e8acc678c2 First of all we can throw the file on Virus Total to see what we can get
+On Virus Total we can see the behavior of the malware before we execute, and we see all the security vendors that are flagging the file as malicious." /><meta name="keywords" content='malware,office, document,, VBA, Macro,, analysis' /><meta itemprop="name" content="Malicious Document Analysis">
+<meta itemprop="description" content="We are going to be using VirusTotal and command line tools like Olevba
+sudo -H pip install -U oletools MD5 Hash of the file we gonna analyze
+a3b613d128aace09241504e8acc678c2 First of all we can throw the file on Virus Total to see what we can get
+On Virus Total we can see the behavior of the malware before we execute, and we see all the security vendors that are flagging the file as malicious."><meta itemprop="datePublished" content="2023-04-17T16:21:50-03:00" />
+<meta itemprop="dateModified" content="2023-04-17T16:21:50-03:00" />
+<meta itemprop="wordCount" content="363">
+<meta itemprop="keywords" content="analysis,malware,office document,VBA Macro," /><meta property="og:title" content="Malicious Document Analysis" />
+<meta property="og:description" content="We are going to be using VirusTotal and command line tools like Olevba
+sudo -H pip install -U oletools MD5 Hash of the file we gonna analyze
+a3b613d128aace09241504e8acc678c2 First of all we can throw the file on Virus Total to see what we can get
+On Virus Total we can see the behavior of the malware before we execute, and we see all the security vendors that are flagging the file as malicious." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://hollowsec.github.io/posts/malicious-document-analysis/malicious_document_analysis/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-04-17T16:21:50-03:00" />
+<meta property="article:modified_time" content="2023-04-17T16:21:50-03:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Malicious Document Analysis"/>
+<meta name="twitter:description" content="We are going to be using VirusTotal and command line tools like Olevba
+sudo -H pip install -U oletools MD5 Hash of the file we gonna analyze
+a3b613d128aace09241504e8acc678c2 First of all we can throw the file on Virus Total to see what we can get
+On Virus Total we can see the behavior of the malware before we execute, and we see all the security vendors that are flagging the file as malicious."/>
+<meta name="application-name" content="HollowSec">
+<meta name="apple-mobile-web-app-title" content="HollowSec"><meta name="theme-color" data-light="#f8f8f8" data-dark="#252627" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" href="http://hollowsec.github.io/posts/malicious-document-analysis/malicious_document_analysis/" /><link rel="prev" href="http://hollowsec.github.io/posts/internal-network/internal_network/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "headline": "Malicious Document Analysis",
+    "inLanguage": "en",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "http:\/\/hollowsec.github.io\/posts\/malicious-document-analysis\/malicious_document_analysis\/"
+    },"genre": "posts","keywords": "analysis, malware, office document, VBA Macro","wordcount":  363 ,
+    "url": "http:\/\/hollowsec.github.io\/posts\/malicious-document-analysis\/malicious_document_analysis\/","datePublished": "2023-04-17T16:21:50-03:00","dateModified": "2023-04-17T16:21:50-03:00","publisher": {
+      "@type": "Organization",
+      "name": ""},"author": {
+        "@type": "Person",
+        "name": "HollowSec"
+      },"description": ""
+  }
+  </script></head>
+  <body data-header-desktop="sticky" data-header-mobile="auto"><script>(window.localStorage?.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('dark' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'dark' === 'dark')) && document.body.setAttribute('data-theme', 'dark');</script><div class="wrapper"><header class="desktop animate__faster" id="header-desktop">
+  <div class="header-wrapper">
+    <div class="header-title">
+      <a href="/" title="HollowSec | Notes"><img
+    class="lazyload logo"
+    src="/svg/loading.min.svg"
+    data-src="/hollowlogo.min.svg"
+    data-srcset="/hollowlogo.min.svg, /hollowlogo.min.svg 1.5x, /hollowlogo.min.svg 2x"
+    data-sizes="auto"
+    alt="HollowSec | Notes"
+    title="HollowSec | Notes"/><span class="header-title-text">HollowSec | Notes</span></a><span class="header-subtitle"></span></div>
+    <nav>
+      <ul class="menu"><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/posts/"
+                
+                
+              >Posts</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/categories/"
+                
+                
+              >Categories</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/tags/"
+                
+                
+              >Tags</a></li><li class="menu-item delimiter"></li><li class="menu-item search" id="search-desktop">
+            <input type="text" placeholder="Search titles or contents ..." id="search-input-desktop">
+            <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+              <i class="fa-solid fa-search fa-fw" aria-hidden="true"></i>
+            </a>
+            <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+              <i class="fa-solid fa-times-circle fa-fw" aria-hidden="true"></i>
+            </a>
+            <span class="search-button search-loading" id="search-loading-desktop">
+              <i class="fa-solid fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+            </span>
+          </li><li class="menu-item theme-switch" title="Switch Theme">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header><header class="mobile animate__faster" id="header-mobile">
+  <div class="header-container">
+    <div class="header-wrapper">
+      <div class="header-title">
+        <a href="/" title="HollowSec | Notes"><img
+    class="lazyload logo"
+    src="/svg/loading.min.svg"
+    data-src="/hollowlogo.min.svg"
+    data-srcset="/hollowlogo.min.svg, /hollowlogo.min.svg 1.5x, /hollowlogo.min.svg 2x"
+    data-sizes="auto"
+    alt="/hollowlogo.min.svg"
+    title="/hollowlogo.min.svg"/><span class="header-title-text">HollowSec | Notes</span></a><span class="header-subtitle"></span></div>
+      <div class="menu-toggle" id="menu-toggle-mobile">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+    <nav>
+      <ul class="menu" id="menu-mobile"><li class="search-wrapper">
+            <div class="search mobile" id="search-mobile">
+              <input type="text" placeholder="Search titles or contents ..." id="search-input-mobile">
+              <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                <i class="fa-solid fa-search fa-fw" aria-hidden="true"></i>
+              </a>
+              <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                <i class="fa-solid fa-times-circle fa-fw" aria-hidden="true"></i>
+              </a>
+              <span class="search-button search-loading" id="search-loading-mobile">
+                <i class="fa-solid fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+              </span>
+            </div>
+            <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+              Cancel
+            </a>
+          </li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/posts/"
+                  
+                  
+                >Posts</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/categories/"
+                  
+                  
+                >Categories</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/tags/"
+                  
+                  
+                >Tags</a></li><li class="menu-item theme-switch" title="Switch Theme">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li></ul>
+    </nav>
+  </div>
+</header><div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+  </div>
+  <div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+  </div><main class="container" data-page-style="normal"><aside class="toc" id="toc-auto"></aside>
+
+  <aside class="aside-custom">
+    
+</aside>
+
+  <article class="page single">
+    <div class="header"><h1 class="single-title animate__animated animate__flipInX">
+        <span title="Repost" class="icon-repost"><i class="fa-solid fa-share fa-fw" aria-hidden="true"></i></span><span>Malicious Document Analysis</span>
+      </h1><p class="single-subtitle animate__animated animate__fadeIn">Analyzing Office Documents</p></div><div class="post-meta">
+      <div class="post-meta-line"><span class="post-author"><a href="https://twitter.com/hollowsec_" title="Author"target="_blank" rel="external nofollow noopener noreferrer author" class="author"><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
+    HollowSec</a></span>
+          <span class="post-category">included in <a href="/categories/analysis/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> analysis</a>&ensp;<a href="/categories/malware/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> malware</a>&ensp;<a href="/categories/vba-macro/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> VBA Macro</a></span></div>
+      <div class="post-meta-line"><span title=2023-04-17&#32;16:21:50><i class="fa-regular fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-04-17">2023-04-17</time></span>&nbsp;<span><i class="fa-solid fa-pencil-alt fa-fw" aria-hidden="true"></i> 363 words</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw" aria-hidden="true"></i> 2 minutes</span>&nbsp;</div>
+    </div><div
+      class="content"
+      id="content"
+      
+      
+    ><p>We are going to be using VirusTotal and command line tools like Olevba</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo -H pip install -U oletools
+</span></span></code></pre></div><p>MD5 Hash of the file we gonna analyze</p>
+<pre tabindex="0"><code>a3b613d128aace09241504e8acc678c2
+</code></pre><p>First of all we can throw the file on Virus Total to see what we can get</p>
+<p><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="/img/virustotal1.png"
+    data-srcset="/img/virustotal1.png, /img/virustotal1.png 1.5x, /img/virustotal1.png 2x"
+    data-sizes="auto"
+    alt="virustotal1.png"
+    title="virustotal1.png"/></p>
+<p>On Virus Total we can see the behavior of the malware before we execute, and we see all the security vendors that are flagging the file as malicious.</p>
+<p>Also, we can see more details about the file
+<img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="/img/virustotal2.png"
+    data-srcset="/img/virustotal2.png, /img/virustotal2.png 1.5x, /img/virustotal2.png 2x"
+    data-sizes="auto"
+    alt="virustotal2.png"
+    title="virustotal2.png"/></p>
+<p>On the Relations tab, we can see the contacted IP Addresses
+<img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="/img/virustotal3.png"
+    data-srcset="/img/virustotal3.png, /img/virustotal3.png 1.5x, /img/virustotal3.png 2x"
+    data-sizes="auto"
+    alt="virustotal3.png"
+    title="virustotal3.png"/>
+This means, when we execute the file, he tries to connect these IP Addresses.</p>
+<p>Now let&rsquo;s go to the terminal and start our advanced static analysis
+First of all we gonna start using olemeta to see the metadata of the file</p>
+<pre tabindex="0"><code>olemeta blog.doc
+</code></pre><p><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="/img/olemeta.png"
+    data-srcset="/img/olemeta.png, /img/olemeta.png 1.5x, /img/olemeta.png 2x"
+    data-sizes="auto"
+    alt="olemeta.png"
+    title="olemeta.png"/>
+On the template field we can see the value &lsquo;Normal.dotm&rsquo;. &rsquo;m&rsquo; meaning macro</p>
+<p>Next we gonna use oleid</p>
+<pre tabindex="0"><code>oleid blog.doc
+</code></pre><p><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="/img/oleid.png"
+    data-srcset="/img/oleid.png, /img/oleid.png 1.5x, /img/oleid.png 2x"
+    data-sizes="auto"
+    alt="oleid.png"
+    title="oleid.png"/>
+oleid tells us that the file has VBA Macros and is suspicious with risk High. On Description tell us to use olevba to analyse</p>
+<pre tabindex="0"><code>olevba blog.doc
+</code></pre><p><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="/img/olevba.png"
+    data-srcset="/img/olevba.png, /img/olevba.png 1.5x, /img/olevba.png 2x"
+    data-sizes="auto"
+    alt="olevba.png"
+    title="olevba.png"/>
+The output give us indicators that are in the VBA macros and highlight the suspicious keywords for us
+IOC = Indicators of compromise.</p>
+<p>Searching for these IP&rsquo;s we can found:
+!<img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="/img/IP.png"
+    data-srcset="/img/IP.png, /img/IP.png 1.5x, /img/IP.png 2x"
+    data-sizes="auto"
+    alt="IP.png"
+    title="IP.png"/></p>
+<p>script trying to ping the IP 1.1.2.2
+Now we can try decode all the malicious VBA Macro script</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">olevba blog.doc &gt; blog.vba
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">olevba --deobf --reveal blog.vba &gt; blog-deobf.vba
+</span></span></code></pre></div><p>Using Visual Code we can open the file</p>
+<p><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="/img/vcode.png"
+    data-srcset="/img/vcode.png, /img/vcode.png 1.5x, /img/vcode.png 2x"
+    data-sizes="auto"
+    alt="vcode.png"
+    title="vcode.png"/></p>
+<p>After decoding we can see much more information</p>
+<p><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="/img/decode.png"
+    data-srcset="/img/decode.png, /img/decode.png 1.5x, /img/decode.png 2x"
+    data-sizes="auto"
+    alt="decode.png"
+    title="decode.png"/></p>
+<p>Looking at the code we can see a part of a url
+<img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="/img/url.png"
+    data-srcset="/img/url.png, /img/url.png 1.5x, /img/url.png 2x"
+    data-sizes="auto"
+    alt="url.png"
+    title="url.png"/>
+If we search for &lsquo;JASHDUIQWHDKJQAD&rsquo; in the code we find:</p>
+<p><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="/img/string.png"
+    data-srcset="/img/string.png, /img/string.png 1.5x, /img/string.png 2x"
+    data-sizes="auto"
+    alt="string.png"
+    title="string.png"/></p>
+<p>We can substitue the &lsquo;JASHDUIQWHDKJQAD&rsquo;  for &lsquo;.44/upd/install&rsquo; in the entire code</p>
+<p>After that we have the following code:</p>
+<p><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="/img/code.png"
+    data-srcset="/img/code.png, /img/code.png 1.5x, /img/code.png 2x"
+    data-sizes="auto"
+    alt="code.png"
+    title="code.png"/></p>
+<pre tabindex="0"><code>&#34;strRT = &#34;&#34;http://91.220.131&#34; + .44/upd/install + &#34;.exe&#34;&#34;&#34;
+</code></pre><p>http[:]//91.220.131.44/upd/install.exe</p>
+<p>Now we can do the same for the following piece
+<img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="/img/temp-obf.png"
+    data-srcset="/img/temp-obf.png, /img/temp-obf.png 1.5x, /img/temp-obf.png 2x"
+    data-sizes="auto"
+    alt="temp-obf.png"
+    title="temp-obf.png"/></p>
+<p><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="/img/temp.png"
+    data-srcset="/img/temp.png, /img/temp.png 1.5x, /img/temp.png 2x"
+    data-sizes="auto"
+    alt="temp.png"
+    title="temp.png"/></p>
+<p>We found where is gonna save the file</p>
+<p>&lsquo;c:\Windows\Temp\444.exe&rsquo;</p>
+<p>Now we can clearly see what the malicious VBA Macro Script is doing</p>
+<p><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="/img/script.png"
+    data-srcset="/img/script.png, /img/script.png 1.5x, /img/script.png 2x"
+    data-sizes="auto"
+    alt="script.png"
+    title="script.png"/></p>
+<p>It&rsquo;s trying to download a .exe file using the command &lsquo;New-Object System.Net.WebClient&rsquo; and store it on the Temp directory with the name 444.exe</p>
+<h1 id="thats-all-folks">That&rsquo;s All Folks</h1>
+</div><div class="post-footer" id="post-footer">
+  <div class="post-info">
+    <div class="post-info-line">
+      <div class="post-info-mod">
+        <span title=2023-04-17&#32;16:21:50>Updated on 2023-04-17&nbsp;</span>
+      </div></div>
+    <div class="post-info-line">
+      <div class="post-info-md"></div>
+      <div class="post-info-share">
+        <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="http://hollowsec.github.io/posts/malicious-document-analysis/malicious_document_analysis/" data-title="Malicious Document Analysis" data-via="hollowsec_" data-hashtags="analysis,malware,office document,VBA Macro"><i class="fa-brands fa-twitter fa-fw" aria-hidden="true"></i></a>
+  <a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="http://hollowsec.github.io/posts/malicious-document-analysis/malicious_document_analysis/" data-hashtag="analysis"><i class="fa-brands fa-facebook-square fa-fw" aria-hidden="true"></i></a>
+  <a href="javascript:void(0);" title="Share on Linkedin" data-sharer="linkedin" data-url="http://hollowsec.github.io/posts/malicious-document-analysis/malicious_document_analysis/"><i class="fa-brands fa-linkedin fa-fw" aria-hidden="true"></i></a>
+  </span>
+      </div>
+    </div>
+  </div>
+
+  <div class="post-info-more">
+    <section class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/analysis/">analysis</a>,&nbsp;<a href="/tags/malware/">malware</a>,&nbsp;<a href="/tags/office-document/">office document</a>,&nbsp;<a href="/tags/vba-macro/">VBA Macro</a></section>
+    <section>
+      <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+    </section>
+  </div>
+
+  <div class="post-nav"><a href="/posts/internal-network/internal_network/" class="prev" rel="prev" title="Malware Analysis Lab: Internal Network"><i class="fa-solid fa-angle-left fa-fw" aria-hidden="true"></i>Malware Analysis Lab: Internal Network</a></div>
+</div>
+</article></main><footer class="footer">
+    <div class="footer-container"><div class="footer-line powered">
+	
+        </div><div class="footer-line statistics"></div></div>
+  </footer></div><div class="widgets"><div class="fixed-buttons animate__faster d-none"><div class="fixed-button back-to-top" role="button" aria-label="Back to Top"><i class="fa-solid fa-arrow-up fa-fw" aria-hidden="true"></i><span class="variant-numeric d-none">0%</span>
+        </div></div><div id="mask"></div><div class="reading-progress-bar" style="left: 0;top: 0;"></div><noscript>
+    <div class="noscript-warning">Theme FixIt works best with JavaScript enabled.</div>
+  </noscript>
+</div><link rel="stylesheet" href="/lib/cookieconsent/cookieconsent.min.css"><script src="/lib/autocomplete/autocomplete.min.js" defer></script><script src="/lib/lunr/lunr.min.js" defer></script><script src="/lib/lazysizes/lazysizes.min.js" async defer></script><script src="/lib/sharer/sharer.min.js" async defer></script><script src="/lib/cookieconsent/cookieconsent.min.js" defer></script><script>window.config={"code":{"copyTitle":"Copy to clipboard","editLockTitle":"Lock editable code block","editUnLockTitle":"Unlock editable code block","editable":true,"maxShownLines":10},"comment":{"enable":false},"cookieconsent":{"content":{"dismiss":"Got it!","link":"Learn more","message":"This website uses Cookies to improve your experience."},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"search":{"highlightTag":"em","maxResultLength":10,"noResultsFound":"No results found","snippetLength":30}};</script><script src="/js/theme.min.js" defer></script></body>
+</html>

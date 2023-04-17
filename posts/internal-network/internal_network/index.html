@@ -28,7 +28,7 @@ I will use VirtualBox for the configuration of Windows 10 and REMnux (Linux Tool
 <meta name="application-name" content="HollowSec">
 <meta name="apple-mobile-web-app-title" content="HollowSec"><meta name="theme-color" data-light="#f8f8f8" data-dark="#252627" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" href="http://hollowsec.github.io/posts/internal-network/internal_network/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" href="http://hollowsec.github.io/posts/internal-network/internal_network/" /><link rel="next" href="http://hollowsec.github.io/posts/malicious-document-analysis/malicious_document_analysis/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
   {
     "@context": "http://schema.org",
     "@type": "BlogPosting",
@@ -214,7 +214,7 @@ I will use VirtualBox for the configuration of Windows 10 and REMnux (Linux Tool
     alt="remnux-network.png"
     title="remnux-network.png"/></p>
 <h3 id="static-ip-configuration">Static IP Configuration</h3>
-<p>There is no <code>DHCP</code> server in the Internal Network, we have to manually define a static IP adress for the REMnux host. For this we gonna use <!-- raw HTML omitted -->netplan<!-- raw HTML omitted --> utility. <!-- raw HTML omitted -->Netplan<!-- raw HTML omitted --> utility uses a YAML config file to control the host&rsquo;s adapter settings.</p>
+<p>There is no DHCP server in the Internal Network, we have to manually define a static IP adress for the REMnux host. For this we gonna use <!-- raw HTML omitted -->netplan<!-- raw HTML omitted --> utility. <!-- raw HTML omitted -->Netplan<!-- raw HTML omitted --> utility uses a YAML config file to control the host&rsquo;s adapter settings.</p>
 <p>Open the netplan config file in vim with sudo:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ sudo vim /etc/netplan/01-netcfg.yaml
 </span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="c"># This file describes the network interfaces available on your system</span><span class="w">
@@ -376,7 +376,8 @@ Ethernet adapter Npcap Loopback Adapter:
     </section>
   </div>
 
-  <div class="post-nav"></div>
+  <div class="post-nav">
+      <a href="/posts/malicious-document-analysis/malicious_document_analysis/" class="next" rel="next" title="Malicious Document Analysis">Malicious Document Analysis<i class="fa-solid fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
 </div>
 </article></main><footer class="footer">
     <div class="footer-container"><div class="footer-line powered">
