@@ -16,7 +16,7 @@ sudo -H pip install -U oletools MD5 Hash of the file we gonna analyze
 a3b613d128aace09241504e8acc678c2 First of all we can throw the file on Virus Total to see what we can get
 On Virus Total we can see the behavior of the malware before we execute, and we see all the security vendors that are flagging the file as malicious."><meta itemprop="datePublished" content="2023-04-17T16:21:50-03:00" />
 <meta itemprop="dateModified" content="2023-04-17T16:21:50-03:00" />
-<meta itemprop="wordCount" content="363">
+<meta itemprop="wordCount" content="359">
 <meta itemprop="keywords" content="analysis,malware,office document,VBA Macro," /><meta property="og:title" content="Malicious Document Analysis" />
 <meta property="og:description" content="We are going to be using VirusTotal and command line tools like Olevba
 sudo -H pip install -U oletools MD5 Hash of the file we gonna analyze
@@ -45,7 +45,7 @@ On Virus Total we can see the behavior of the malware before we execute, and we 
     "mainEntityOfPage": {
       "@type": "WebPage",
       "@id": "http:\/\/hollowsec.github.io\/posts\/malicious-document-analysis\/malicious_document_analysis\/"
-    },"genre": "posts","keywords": "analysis, malware, office document, VBA Macro","wordcount":  363 ,
+    },"genre": "posts","keywords": "analysis, malware, office document, VBA Macro","wordcount":  359 ,
     "url": "http:\/\/hollowsec.github.io\/posts\/malicious-document-analysis\/malicious_document_analysis\/","datePublished": "2023-04-17T16:21:50-03:00","dateModified": "2023-04-17T16:21:50-03:00","publisher": {
       "@type": "Organization",
       "name": ""},"author": {
@@ -178,7 +178,7 @@ On Virus Total we can see the behavior of the malware before we execute, and we 
       <div class="post-meta-line"><span class="post-author"><a href="https://twitter.com/hollowsec_" title="Author"target="_blank" rel="external nofollow noopener noreferrer author" class="author"><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
     HollowSec</a></span>
           <span class="post-category">included in <a href="/categories/analysis/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> analysis</a>&ensp;<a href="/categories/malware/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> malware</a>&ensp;<a href="/categories/vba-macro/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> VBA Macro</a></span></div>
-      <div class="post-meta-line"><span title=2023-04-17&#32;16:21:50><i class="fa-regular fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-04-17">2023-04-17</time></span>&nbsp;<span><i class="fa-solid fa-pencil-alt fa-fw" aria-hidden="true"></i> 363 words</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw" aria-hidden="true"></i> 2 minutes</span>&nbsp;</div>
+      <div class="post-meta-line"><span title=2023-04-17&#32;16:21:50><i class="fa-regular fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-04-17">2023-04-17</time></span>&nbsp;<span><i class="fa-solid fa-pencil-alt fa-fw" aria-hidden="true"></i> 359 words</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw" aria-hidden="true"></i> 2 minutes</span>&nbsp;</div>
     </div><div
       class="content"
       id="content"
@@ -215,8 +215,8 @@ On Virus Total we can see the behavior of the malware before we execute, and we 
     data-srcset="/img/virustotal3.png, /img/virustotal3.png 1.5x, /img/virustotal3.png 2x"
     data-sizes="auto"
     alt="virustotal3.png"
-    title="virustotal3.png"/>
-This means, when we execute the file, he tries to connect these IP Addresses.</p>
+    title="virustotal3.png"/></p>
+<p>This means, when we execute the file, he tries to connect these IP Addresses.</p>
 <p>Now let&rsquo;s go to the terminal and start our advanced static analysis
 First of all we gonna start using olemeta to see the metadata of the file</p>
 <pre tabindex="0"><code>olemeta blog.doc
@@ -227,8 +227,8 @@ First of all we gonna start using olemeta to see the metadata of the file</p>
     data-srcset="/img/olemeta.png, /img/olemeta.png 1.5x, /img/olemeta.png 2x"
     data-sizes="auto"
     alt="olemeta.png"
-    title="olemeta.png"/>
-On the template field we can see the value &lsquo;Normal.dotm&rsquo;. &rsquo;m&rsquo; meaning macro</p>
+    title="olemeta.png"/></p>
+<p>On the template field we can see the value &lsquo;Normal.dotm&rsquo;. &rsquo;m&rsquo; meaning macro</p>
 <p>Next we gonna use oleid</p>
 <pre tabindex="0"><code>oleid blog.doc
 </code></pre><p><img
@@ -238,8 +238,8 @@ On the template field we can see the value &lsquo;Normal.dotm&rsquo;. &rsquo;m&r
     data-srcset="/img/oleid.png, /img/oleid.png 1.5x, /img/oleid.png 2x"
     data-sizes="auto"
     alt="oleid.png"
-    title="oleid.png"/>
-oleid tells us that the file has VBA Macros and is suspicious with risk High. On Description tell us to use olevba to analyse</p>
+    title="oleid.png"/></p>
+<p>oleid tells us that the file has VBA Macros and is suspicious with risk High. On Description tell us to use olevba to analyse</p>
 <pre tabindex="0"><code>olevba blog.doc
 </code></pre><p><img
     class="lazyload"
@@ -248,11 +248,11 @@ oleid tells us that the file has VBA Macros and is suspicious with risk High. On
     data-srcset="/img/olevba.png, /img/olevba.png 1.5x, /img/olevba.png 2x"
     data-sizes="auto"
     alt="olevba.png"
-    title="olevba.png"/>
-The output give us indicators that are in the VBA macros and highlight the suspicious keywords for us
-IOC = Indicators of compromise.</p>
-<p>Searching for these IP&rsquo;s we can found:
-!<img
+    title="olevba.png"/></p>
+<p>The output give us indicators that are in the VBA macros and highlight the suspicious keywords for us</p>
+<p>IOC = Indicators of compromise.</p>
+<p>Searching for these IP&rsquo;s:</p>
+<p><img
     class="lazyload"
     src="/svg/loading.min.svg"
     data-src="/img/IP.png"
@@ -260,8 +260,8 @@ IOC = Indicators of compromise.</p>
     data-sizes="auto"
     alt="IP.png"
     title="IP.png"/></p>
-<p>script trying to ping the IP 1.1.2.2
-Now we can try decode all the malicious VBA Macro script</p>
+<p>script trying to ping the IP 1.1.2.2</p>
+<p>Now we can try decode all the malicious VBA Macro script</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">olevba blog.doc &gt; blog.vba
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">olevba --deobf --reveal blog.vba &gt; blog-deobf.vba
@@ -283,16 +283,16 @@ Now we can try decode all the malicious VBA Macro script</p>
     data-sizes="auto"
     alt="decode.png"
     title="decode.png"/></p>
-<p>Looking at the code we can see a part of a url
-<img
+<p>Looking at the code we can see a part of a url</p>
+<p><img
     class="lazyload"
     src="/svg/loading.min.svg"
     data-src="/img/url.png"
     data-srcset="/img/url.png, /img/url.png 1.5x, /img/url.png 2x"
     data-sizes="auto"
     alt="url.png"
-    title="url.png"/>
-If we search for &lsquo;JASHDUIQWHDKJQAD&rsquo; in the code we find:</p>
+    title="url.png"/></p>
+<p>If we search for &lsquo;JASHDUIQWHDKJQAD&rsquo; in the code we find:</p>
 <p><img
     class="lazyload"
     src="/svg/loading.min.svg"
@@ -313,8 +313,8 @@ If we search for &lsquo;JASHDUIQWHDKJQAD&rsquo; in the code we find:</p>
     title="code.png"/></p>
 <pre tabindex="0"><code>&#34;strRT = &#34;&#34;http://91.220.131&#34; + .44/upd/install + &#34;.exe&#34;&#34;&#34;
 </code></pre><p>http[:]//91.220.131.44/upd/install.exe</p>
-<p>Now we can do the same for the following piece
-<img
+<p>Now we can do the same for the following piece</p>
+<p><img
     class="lazyload"
     src="/svg/loading.min.svg"
     data-src="/img/temp-obf.png"
